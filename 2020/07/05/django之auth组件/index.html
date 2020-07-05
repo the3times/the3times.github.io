@@ -1,159 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Head tag -->
 <head>
-    <meta charset="utf-8" />
-    
-        <title>django之auth组件 | </title>
-    
 
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
-<meta name="format-detection" content="telephone=no">
-<meta name="author" content="the3times" />
-<meta name="designer" content="minfive" />
-<meta name="keywords" content="null"/>
-<meta name="description" content="" />
+    <meta charset="utf-8"/>
+<!--    <meta name="referrer" content="no-referrer"/>-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<meta name="format-detection" content="telephone=yes" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="robots" content="all" />
-
-<link rel="canonical" href="http://yoursite.com/2020/07/05/django%E4%B9%8Bauth%E7%BB%84%E4%BB%B6/index.html">
-
-<link rel="icon" type="image/png" href="undefined" sizes="32x32">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Prefetch -->
-
-
-
-
-
-
-<!-- CSS -->
-
-<link rel="stylesheet" href="/scss/base/index.css">
-
-
-<!-- RSS -->
-<link rel="alternate" href="/atom.xml" title="the3times的博客">
-
-<!-- 统计 -->
-<!-- 百度统计 -->
-
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-
+    <!--Description-->
 
     
-    
-    
-<link rel="stylesheet" href="/scss/views/page/post.css">
 
+    
+        <meta name="description" content="简介django提供了一个非常好用的组件，这个组件主要负责用户登录认证的全套功能，它就是auth组件。
+有了auth组件，我们就不需要再手动写登录校验装饰器，不需要再手动设置session保存用户状态。
+django项目执行数据库迁移命令后会生成一堆默认的表，其中就包括auth_user表，auth"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="the3times"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="django之auth组件"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="简介django提供了一个非常好用的组件，这个组件主要负责用户登录认证的全套功能，它就是auth组件。
+有了auth组件，我们就不需要再手动写登录校验装饰器，不需要再手动设置session保存用户状态。
+django项目执行数据库迁移命令后会生成一堆默认的表，其中就包括auth_user表，auth"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content=""/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoursite.comhttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>django之auth组件 - </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
 
 <meta name="generator" content="Hexo 4.2.1"></head>
-<body ontouchstart>
-    
-        <!-- loading 页面 -->
-<div id="page-loading" class="page page-loading" style="background-image: url('undefined')"></div>
-    
 
-    <div id="page" class="page js-hidden">
-        
-    <!-- 页头 -->
-<header class="page__small-header page__header--small">
-    <nav class="page__navbar">
-        <div class="page__container navbar-container">
-            <a class="page__logo" href="/" title="the3times的博客" alt="the3times的博客">
-                <img src="undefined" alt="the3times的博客">
-            </a>
 
-            <nav class="page__nav">
-                <ul class="nav__list clearfix">
-                    
-                        
-                        <li class="nav__item">
-                            <a href="/" alt="Home" title="Home">Home</a>
-                        </li>
-                    
-                        
-                        <li class="nav__item">
-                            <a href="/archives" alt="Archive" title="Archive">Archive</a>
-                        </li>
-                    
-                        
-                        <li class="nav__item">
-                            <a href="/about" alt="About" title="About">About</a>
-                        </li>
-                    
-                </ul>
-            </nav>
+<body>
 
-            <button class="page__menu-btn" type="button">
-                <i class="iconfont icon-menu"></i>
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand" href="/">the3times</a>
         </div>
-    </nav>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/the3times" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>django之auth组件</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2020-07-05
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-        
-    <main class="page__container page__main">
-    <div class="page__content">
-        <article class="page__post">
-    <div class="post__cover">
-        <img src="undefined" alt="django之auth组件">
-    </div>
+            <!-- Tags and categories -->
+           
 
-    <header class="post__info">
-        <h1 class="post__title">django之auth组件</h1>
-
-        <div class="post__mark">
-            <div class="mark__block">
-                <i class="mark__icon iconfont icon-write"></i>
-                <ul class="mark__list clearfix">
-                    
-                        <li class="mark__item">
-                            <a href="/">undefined</a>
-                        </li>
-                    
-                </ul>
-            </div>
+            <!-- Gallery -->
             
-            <div class="mark__block">
-                <i class="mark__icon iconfont icon-time"></i>
-                <ul class="mark__list clearfix">
-                    <li class="mark__item"><span>2020-07-05</span></li>
-                </ul>
-            </div>
 
-            <div class="mark__block">
-                <i class="mark__icon iconfont icon-tab"></i>
-                <ul class="mark__list clearfix">
-                    
-                </ul>
-            </div>
-
-            
-        </div>
-    </header>
-
-    <div class="post__content">
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>django提供了一个非常好用的组件，这个组件主要负责用户登录认证的全套功能，它就是auth组件。</p>
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>django提供了一个非常好用的组件，这个组件主要负责用户登录认证的全套功能，它就是auth组件。</p>
 <p>有了auth组件，我们就不需要再手动写登录校验装饰器，不需要再手动设置session保存用户状态。</p>
 <p>django项目执行数据库迁移命令后会生成一堆默认的表，其中就包括auth_user表，auth组件和这张表有密切关系。</p>
 <p>另外，django项目默认都会有一个admin后台管理系统，登录的用户信息是保存在auth_user表中的；且用户分为普通用户和超级用户，只有超级用户可以登录admin后台管理系统。</p>
@@ -217,202 +264,79 @@
 <p><img src="https://img2020.cnblogs.com/blog/1950650/202006/1950650-20200609165606309-967936755.jpg" alt=""></p>
 
 
-        
-        <div class="post-announce">
-            Thank you for reading, this article belongs to
-            <a href="http://yoursite.com">the3times的博客</a>
-            copyright, if reproduced, please indicate the source：the3times的博客（<a href="http://yoursite.com/2020/07/05/django%E4%B9%8Bauth%E7%BB%84%E4%BB%B6/">http://yoursite.com/2020/07/05/django%E4%B9%8Bauth%E7%BB%84%E4%BB%B6/</a>）
-        </div>
-        
+                
+            </div>
 
-        <div class="post__prevs">
-            <div class="post__prev">
-                
-                <a href="/2020/07/05/hello-world/" title="Hello World"><i class="iconfont icon-prev"></i>Hello World</a>
-                
-            </div>
-            <div class="post__prev post__prev--right">
-                
-                <a href="/2020/07/05/django%E4%B9%8Bforms%E7%BB%84%E4%BB%B6/" title="django之forms组件">django之forms组件<i class="iconfont icon-next"></i></a>
-                
-            </div>
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
         </div>
     </div>
 </article>
 
-        
-        
-    </div>
+    <!-- Footer -->
+    <hr />
 
-    <aside class="page__sidebar">
-    <!--  -->
+<!-- Footer -->
+<footer>
+    <!-- 统计访问次数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
 
-    <form id="page-search-from" class="page__search-from" action="/search/">
-        <label class="search-form__item">
-            <input class="input" type="text" name="search" placeholder="Search...">
-            <i class="iconfont icon-search"></i>
-        </label>
-    </form>
+                    
 
-    
-
-    <div class="sidebar__block">
-        <h3 class="block__title">Categories</h3>
-        
-    </div>
-    
-    <div class="sidebar__block">
-        <h3 class="block__title">Latest Post</h3>
-        
-        <ul class="block-list latest-post-list">
-            
-                    <li class="latest-post-item">
-                        <a href="/2020/07/05/django%E4%B9%8Bforms%E7%BB%84%E4%BB%B6/" title="django之forms组件">
-                            <div class="item__cover">
-                                <img src="undefined" alt="django之forms组件" />
-                            </div>
-                            <div class="item__info">
-                                <h3 class="item__title">django之forms组件</h3>
-                                <span class="item__text">2020-07-05</span>
-                            </div>
-                        </a>
-                    </li>
-                
-                    <li class="latest-post-item">
-                        <a href="/2020/07/05/django%E4%B9%8Bauth%E7%BB%84%E4%BB%B6/" title="django之auth组件">
-                            <div class="item__cover">
-                                <img src="undefined" alt="django之auth组件" />
-                            </div>
-                            <div class="item__info">
-                                <h3 class="item__title">django之auth组件</h3>
-                                <span class="item__text">2020-07-05</span>
-                            </div>
-                        </a>
-                    </li>
-                
-                    <li class="latest-post-item">
-                        <a href="/2020/07/05/hello-world/" title="Hello World">
-                            <div class="item__cover">
-                                <img src="undefined" alt="Hello World" />
-                            </div>
-                            <div class="item__info">
-                                <h3 class="item__title">Hello World</h3>
-                                <span class="item__text">2020-07-05</span>
-                            </div>
-                        </a>
-                    </li>
-                
-        </ul>
-    
-    </div>
-
-    <div class="sidebar__block">
-        <h3 class="block__title">Tags</h3>
-        
-        <ul class="block-list tag-list clearfix">
-            
-        </ul>
-    
-    </div>
-
-    <!-- <div class="sidebar__block">
-        <h3 class="block__title">Friend Links</h3>
-        <ul class="block-list">
-            
-        </ul>
-    </div> -->
-</aside>
-</main>
-
-
-        
-            <!-- 页脚 -->
-<footer class="page__footer">
-    <section class="footer__top">
-        <div class="page__container footer__container">
-            
-            <div class="footer-top__item footer-top__item--2">
-                <h3 class="item__title">About</h3>
-                <div class="item__content">
-                    <p class="item__text"></p>
-                    <ul class="footer__contact-info">
-                        <li class="contact-info__item">
-                            <i class="iconfont icon-address"></i>
-                            <span></span>
+                    
+                        <li>
+                            <a href="https://github.com/the3times" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
                         </li>
-                        <li class="contact-info__item">
-                            <i class="iconfont icon-email2"></i>
-                            <span></span>
-                        </li>
-                    </ul>
-                </div>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 the3times<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+                <p class="copyright text-muted"><span >本站总访问量<span id="busuanzi_value_site_pv"></span>次</span></p>
             </div>
 
-            
-            
-            
-            
-            
         </div>
-    </section>
-    <section class="footer__bottom">
-        <div class="page__container footer__container">
-            <p class="footer__copyright">©
-                <a href="https://github.com/Mrminfive/hexo-theme-skapp" target="_blank">Skapp</a> 2017 powered by
-                <a href="http://hexo.io/" target="_blank">Hexo</a>, made by 
-                <a href="https://github.com/Mrminfive" target="_blank">minfive</a>.
-            </p>
-            <ul class="footer__social-network clearfix">
-                
-            </ul>
-        </div>
-    </section>
-</footer>
-        
-
-        
-            <!-- 返回顶部 -->
-<div id="back-top" class="back-top back-top--hidden js-hidden">
-    <i class="iconfont icon-top"></i>
-</div>
-        
     </div>
+</footer>
 
-    <!-- build:js /js/common.js -->
-        <script type="text/javascript" src="js/common/utils.js"></script>
-        <script type="text/javascript" src="js/common/pack.js"></script>
-        <script type="text/javascript" src="js/common/animation.js"></script>
-        <script type="text/javascript" src="js/layout/loading.js"></script>
-        <script type="text/javascript" src="js/layout/header.js"></script>
-        <script type="text/javascript" src="js/layout/back-top.js"></script>
-        <script type="text/javascript" src="js/layout/post.js"></script>
-    <!-- endbuild -->
 
+    <!-- After footer scripts -->
     
-    
-<script src="/js/page/post.js"></script>
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
-    
-    
-
-
-
-    <!-- 不蒜子统计 -->
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-
-
-     
-
-
-
-
-
+<!-- Disqus Comments -->
 
 
 
 </body>
+
 </html>
