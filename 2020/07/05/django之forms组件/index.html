@@ -346,6 +346,28 @@
             
                 <!-- Comments -->
                 
+    
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+        <div id="gitalk-container"></div>
+    </div>
+
+    <script>
+        let gitalk = new Gitalk({
+            clientID: '1c71a8af71762f6951df',
+            clientSecret: '7a0fb2df67d6e401511228c1e18568196574ac8b',
+            repo: 'the3times.github.io',
+            owner: 'www.github.com/the3times',
+            admin: null,
+            id: '2020-07-05 14:09:41',
+            title: 'django之forms组件',
+            distractionFreeMode: false  // Facebook-like distraction free mode
+        });
+        gitalk.render('gitalk-container');
+    </script>
+
 
                 
 
